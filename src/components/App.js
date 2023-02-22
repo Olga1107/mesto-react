@@ -1,18 +1,37 @@
+import { useState } from 'react';
+
+import '../index.css';
+
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
-
-import '../index.css';
-import { useState } from 'react';
-
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState({})
+
+  function handleEditAvatarClick () {
+    setIsEditAvatarPopupOpen(true)
+  }
+
+  function handleEditProfileClick () {
+    setIsEditProfilePopupOpen(true)
+  }
+
+  function handleAddPlaceClick () {
+    setIsAddPlacePopupOpen(true)
+  }
+
+  function closeAllPopup () {
+    setIsEditAvatarPopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+    setSelectedCard({isOpen: false})
+  }
 
   return (
     <div className="page">
@@ -93,25 +112,6 @@ function App() {
       
     </div>
   );
-
-  function handleEditAvatarClick () {
-    setIsEditAvatarPopupOpen(true)
-  }
-
-  function handleEditProfileClick () {
-    setIsEditProfilePopupOpen(true)
-  }
-
-  function handleAddPlaceClick () {
-    setIsAddPlacePopupOpen(true)
-  }
-
-  function closeAllPopup () {
-    setIsEditAvatarPopupOpen(false)
-    setIsEditProfilePopupOpen(false)
-    setIsAddPlacePopupOpen(false)
-    setSelectedCard({isOpen: false})
-  }
 }
 
 export default App;

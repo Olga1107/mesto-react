@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../utils/Api'
+
 import Card from './Card'
 
 function Main(props) {
@@ -15,7 +16,7 @@ useEffect(() => {
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
-});})
+});}, [])
 
 return (
   <main>
@@ -34,7 +35,8 @@ return (
     </section>
     <section className="photo-gallery">
     {cards.map((cardData)=> (
-      <Card 
+      <Card
+        key={cardData._id}
         card={cardData}
         link={cardData.link}
         name={cardData.name}
