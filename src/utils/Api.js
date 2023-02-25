@@ -40,7 +40,7 @@ export default class Api {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify({
-            avatar: userData.link
+            avatar: userData
             })
         })
     .then(res => this._check(res))
@@ -95,12 +95,26 @@ export default class Api {
           })
               .then(res => this._check(res))
       }
+      
+      changeLikeCardStatus(cardId, isLiked) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+          method: isLiked ? "PUT" : "DELETE",
+          headers: this._headers,
+        }).then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Возникла ошибка: ${res.status}`);
+        });
+      }
+
   }
 
+  
   export const api = new Api ({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-56',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-50',
     headers: {
-      authorization: "d6aaa682-8d39-41b5-ad5e-1690faf1ea1e",
+      authorization: "fa8b7030-628c-4c20-88d8-1bf7f45e43a9",
       'Content-Type': 'application/json'
     }
   }) 
